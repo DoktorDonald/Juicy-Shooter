@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -5,6 +6,7 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed;
     [SerializeField] float firerate;
+    [SerializeField] float bulletLifeTime;
 
     [SerializeField] float bulletOriginOffset;
 
@@ -47,6 +49,8 @@ public class Gun : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, new Vector2(transform.position.x, transform.position.y) + (mousePos - new Vector2(transform.position.x, transform.position.y)).normalized * bulletOriginOffset, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().linearVelocity = (mousePos - new Vector2(transform.position.x, transform.position.y)).normalized * bulletSpeed;
+           
+            bullet.GetComponent<Bullet>().StartTimer(bulletLifeTime);
 
             shootingTimer = 0;
         }

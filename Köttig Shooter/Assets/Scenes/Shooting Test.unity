@@ -255,6 +255,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8349754471245291379, guid: c01ef0d7c89ecfb4f8c360f6daa68763, type: 3}
   bulletSpeed: 30
   firerate: 20
+  bulletLifeTime: 5
   bulletOriginOffset: 1
 --- !u!1 &1674854578
 GameObject:
