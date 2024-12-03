@@ -256,7 +256,14 @@ MonoBehaviour:
   bulletSpeed: 30
   firerate: 20
   bulletLifeTime: 5
+  spreadIncrease: 0.2
+  spreadDelay: 1
+  spreadDecrease: 1
+  maxSpread: 0.2
+  overheatTime: 5
+  rechargeTime: 2
   bulletOriginOffset: 1
+  spread: 0
 --- !u!1 &1674854578
 GameObject:
   m_ObjectHideFlags: 0
