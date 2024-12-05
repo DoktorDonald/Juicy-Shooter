@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
 
     [SerializeField] float bulletOriginOffset;
 
-    [SerializeField] float spread;
+    float spread;
 
     Vector2 mousePos;
     Vector2 gunPos;
@@ -87,7 +87,10 @@ public class Gun : MonoBehaviour
         }
 
         Vector2 rand = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        aimPoint = mousePos + (rand * spread * (mousePos - gunPos).magnitude);
+
+        Vector2 closestPoint = gunPos + (mousePos - gunPos).normalized * bulletOriginOffset + (mousePos - gunPos).normalized;
+
+        aimPoint = closestPoint + rand * spread * bulletOriginOffset * (maxSpread + 2);
     }
 
     private void HandleShooting()
