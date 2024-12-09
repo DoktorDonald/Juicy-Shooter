@@ -85,9 +85,10 @@ public class Gun : MonoBehaviour
         {
             spread -= spreadDecrease * Time.deltaTime;
         }
-        else if (spread <= 0)
+
+        if (spreadTimer > 0 && !(Input.GetMouseButton(0) && canShoot))
         {
-            spreadTimer = 0;
+            spreadTimer -= (overheatTime * Time.deltaTime) / rechargeTime;
         }
 
         overheatBar.fillAmount = spreadTimer / overheatTime;
