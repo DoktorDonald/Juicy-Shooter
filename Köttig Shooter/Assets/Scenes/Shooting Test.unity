@@ -519,6 +519,7 @@ MonoBehaviour:
   overheatTime: 5
   rechargeTime: 2
   bulletOriginOffset: 1
+  overheatBar: {fileID: 403104325}
 --- !u!1 &1674854578
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class Gun : MonoBehaviour
     [SerializeField] float rechargeTime;
 
     [SerializeField] float bulletOriginOffset;
+
+    [SerializeField] Image overheatBar;
 
     float spread;
 
@@ -85,6 +89,8 @@ public class Gun : MonoBehaviour
         {
             spreadTimer = 0;
         }
+
+        overheatBar.fillAmount = spreadTimer / overheatTime;
 
         Vector2 rand = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
