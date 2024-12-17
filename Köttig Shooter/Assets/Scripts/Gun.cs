@@ -19,6 +19,8 @@ public class Gun : MonoBehaviour
 
     [SerializeField] float bulletOriginOffset;
 
+    [SerializeField] float recoil;
+
     [SerializeField] Image overheatBar;
 
     float spread;
@@ -33,6 +35,19 @@ public class Gun : MonoBehaviour
     float spreadTimer;
 
     bool canShoot = true;
+
+    PlayerMovement playerMovement;
+    FollowCamera followCamera;
+
+    private void Awake()
+    {
+        playerMovement = GetComponentInParent<PlayerMovement>();
+    }
+
+    private void Start()
+    {
+        followCamera = FindFirstObjectByType<FollowCamera>();
+    }
 
     private void Update()
     {
@@ -107,7 +122,11 @@ public class Gun : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, gunPos + (mousePos - gunPos).normalized * bulletOriginOffset, Quaternion.identity);
 
             Vector3 velocity = ((Vector2)aimPoint - (gunPos + (mousePos - gunPos).normalized * bulletOriginOffset)).normalized * bulletSpeed;
+
             bullet.GetComponent<Rigidbody2D>().linearVelocity = velocity;
+
+            playerMovement.Recoil(-velocity.normalized, recoil);
+            followCamera.StartCameraShake();
            
             bullet.GetComponent<Bullet>().StartTimer(bulletLifeTime);
 

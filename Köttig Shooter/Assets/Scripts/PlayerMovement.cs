@@ -1,3 +1,5 @@
+using Unity.Mathematics;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,14 +10,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSmoothing = 2f;
 
     float velocity;
-    bool canJump = true;
+    bool canJump;
 
     CapsuleCollider2D capsuleCollider;
+    BoxCollider2D feetCollider;
     Rigidbody2D myRigidBody;
 
     void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        feetCollider = GetComponent<BoxCollider2D>();
         myRigidBody = GetComponent<Rigidbody2D>();
     }
     void Update()
@@ -25,11 +29,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        canJump = true;
+        if (feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            canJump = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        canJump = false;
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            canJump = false;
+        }
     }
     void Move()
     {
@@ -41,5 +51,10 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidBody.linearVelocityY = jumpHeight;
         }  
+    }
+
+    public void Recoil(Vector2 direction, float magnitude)
+    {
+        myRigidBody.linearVelocity += direction * magnitude;
     }
 }
