@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if (IsTouching("Ground"))
         {
-            Instantiate(explosion, transform.position, Quaternion.identity);
+            Explosion();
             DestroySelf();
         }
 
