@@ -16,16 +16,21 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D feetCollider;
     Rigidbody2D myRigidBody;
 
+    GameObject playerSprite;
+
     void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         feetCollider = GetComponent<BoxCollider2D>();
         myRigidBody = GetComponent<Rigidbody2D>();
+
+        playerSprite = transform.GetChild(0).gameObject;
     }
     void Update()
     {
         Move();
         Jump();
+        Crouch();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,6 +56,20 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidBody.linearVelocityY = jumpHeight;
         }  
+    }
+
+    void Crouch()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            capsuleCollider.size = new Vector2(1, 1);
+            playerSprite.transform.localScale = new Vector3(1, 0.5f, 1);
+        }
+        else
+        {
+            capsuleCollider.size = new Vector2(1, 2);
+            playerSprite.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     public void Recoil(Vector2 direction, float magnitude)

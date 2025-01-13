@@ -33,17 +33,17 @@ public class FollowCamera : MonoBehaviour
         size = cam.orthographicSize;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Vector3 targetPos = target.position + offset + shakeOffset;
 
         targetPos.z = transform.position.z;
 
-        transform.position = Vector3.Lerp(transform.position, targetPos, smoothing);
+        transform.position = Vector3.Lerp(transform.position, targetPos, smoothing * Time.deltaTime);
 
         float targetSize = size + sizeScaling * target.GetComponent<Rigidbody2D>().linearVelocity.magnitude;
 
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, sizeSmoothing);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, sizeSmoothing * Time.deltaTime);
     }
 
     public void StartCameraShake()

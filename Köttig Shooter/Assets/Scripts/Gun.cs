@@ -1,27 +1,41 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
+    [Header("Bullets")]
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject casingPrefab;
+    [SerializeField] float bulletOriginOffset;
     [SerializeField] float bulletSpeed;
     [SerializeField] float firerate;
     [SerializeField] float bulletLifeTime;
 
+    [Header("Gun")]
     [SerializeField] float spreadIncrease;
     [SerializeField] float spreadDelay;
     [SerializeField] float spreadDecrease;
     [SerializeField] float maxSpread;
     [SerializeField] float overheatTime;
     [SerializeField] float rechargeTime;
-
-    [SerializeField] float bulletOriginOffset;
-
     [SerializeField] float recoil;
 
+    [Header("Casings")]
+    [SerializeField] float ejectionSpeed;
+    [SerializeField] float ejectionSpeedRandomness;
+    [SerializeField] float ejectAngleRandomness;
+    [SerializeField] int maxCasingCount;
+
+    [Header("Other")]
     [SerializeField] Image overheatBar;
+
+    [SerializeField] List<GameObject> casings = new List<GameObject>();
 
     float spread;
 
@@ -39,6 +53,8 @@ public class Gun : MonoBehaviour
     PlayerMovement playerMovement;
     FollowCamera followCamera;
 
+    ParticleSystem muzzleFlash;
+
     private void Awake()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
@@ -47,6 +63,7 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         followCamera = FindFirstObjectByType<FollowCamera>();
+        muzzleFlash = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
@@ -125,12 +142,52 @@ public class Gun : MonoBehaviour
 
             bullet.GetComponent<Rigidbody2D>().linearVelocity = velocity;
 
+            muzzleFlash.Play();
+
             playerMovement.Recoil(-velocity.normalized, recoil);
             followCamera.StartCameraShake();
            
             bullet.GetComponent<Bullet>().StartTimer(bulletLifeTime);
 
             shootingTimer = 0;
+
+            EjectCasing();
+        }
+    }
+
+    void EjectCasing()
+    {
+        GameObject casing = Instantiate(casingPrefab, transform.position, Quaternion.identity);
+
+        casings.Add(casing);
+        HandleCasings();
+
+        float random = ejectAngleRandomness;
+
+        Vector3 rand1 = new Vector2(Random.Range(-random, random), Random.Range(-random, random));
+        Vector2 eject = GameObject.Find("Casing Eject Angle").transform.position + rand1 - transform.position;
+
+        float rand2 = Random.Range(-ejectionSpeedRandomness / 2, ejectionSpeedRandomness / 2);
+
+        casing.GetComponent<Rigidbody2D>().linearVelocity = eject.normalized * (ejectionSpeed + rand2);
+        casing.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-360, 360);
+    }
+
+    void HandleCasings()
+    {
+        if (casings.Count > maxCasingCount)
+        {
+            Destroy(casings[0]);
+            
+            for (int i = 0; i < maxCasingCount; i++)
+            {
+                casings[i] = casings[i + 1];
+
+                if (i == maxCasingCount - 1)
+                {
+                    casings.Remove(casings[maxCasingCount]);
+                }
+            }
         }
     }
 
