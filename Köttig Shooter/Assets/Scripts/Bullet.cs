@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject explosion;
+    [SerializeField] bool explosive;
 
     float time;
 
@@ -18,13 +19,13 @@ public class Bullet : MonoBehaviour
     {
         if (IsTouching("Ground"))
         {
-            Explosion();
+            if (explosive) { Explosion(); }
             DestroySelf();
         }
 
         if (IsTouching("Casing"))
         {
-            Invoke(nameof(Explosion), 0.05f);
+            if (explosive) { Invoke(nameof(Explosion), 0.05f); }
             Invoke(nameof(DestroySelf), 0.05f);
         }
     }
