@@ -610,7 +610,7 @@ MonoBehaviour:
   sizeScaling: 0.05
   sizeSmoothing: 0.15
   shakes: 5
-  shakeIntensity: 0.6
+  shakeIntensity: 1
   shakeTime: 0.2
 --- !u!1 &1200811001
 GameObject:
@@ -818,6 +818,10 @@ PrefabInstance:
     - target: {fileID: 2597610424411575932, guid: 9677444bda73d7947a2e3763bfff5c19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6663837968379451852, guid: 9677444bda73d7947a2e3763bfff5c19, type: 3}
+      propertyPath: bulletSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6663837968379451852, guid: 9677444bda73d7947a2e3763bfff5c19, type: 3}
       propertyPath: ejectionSpeed

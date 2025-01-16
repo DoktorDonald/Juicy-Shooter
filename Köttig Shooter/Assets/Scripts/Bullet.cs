@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] GameObject hitParticles;
     [SerializeField] GameObject explosion;
     [SerializeField] bool explosive;
 
@@ -19,13 +20,14 @@ public class Bullet : MonoBehaviour
     {
         if (IsTouching("Ground"))
         {
-            if (explosive) { Explosion(); }
+            Instantiate(hitParticles, transform.position, Quaternion.identity);
+            if (explosive) { Explode(); }
             DestroySelf();
         }
 
         if (IsTouching("Casing"))
         {
-            if (explosive) { Invoke(nameof(Explosion), 0.05f); }
+            if (explosive) { Invoke(nameof(Explode), 0.05f); }
             Invoke(nameof(DestroySelf), 0.05f);
         }
     }
@@ -40,7 +42,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Explosion()
+    void Explode()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
     }
