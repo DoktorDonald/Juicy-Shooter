@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     float velocity;
     bool canJump;
+    float scaleOriginal;
 
     CapsuleCollider2D capsuleCollider;
     BoxCollider2D feetCollider;
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
 
         playerSprite = transform.GetChild(0).gameObject;
+
+        scaleOriginal = playerSprite.transform.localScale.x;
     }
     void Update()
     {
@@ -63,12 +66,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             capsuleCollider.size = new Vector2(1, 1);
-            playerSprite.transform.localScale = new Vector3(1, 0.5f, 1);
+            playerSprite.transform.localScale = new Vector3(1, 0.5f, 1) * scaleOriginal;
         }
         else
         {
             capsuleCollider.size = new Vector2(1, 2);
-            playerSprite.transform.localScale = new Vector3(1, 1, 1);
+            playerSprite.transform.localScale = new Vector3(1, 1, 1) * scaleOriginal;
         }
     }
 
