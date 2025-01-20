@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D myRigidBody;
 
     GameObject playerSprite;
+    Animator animator;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
 
         playerSprite = transform.GetChild(0).gameObject;
+        animator = playerSprite.GetComponent<Animator>();
 
         scaleOriginal = playerSprite.transform.localScale.x;
     }
@@ -34,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Jump();
         Crouch();
+        Animate();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -52,6 +55,15 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         myRigidBody.linearVelocityX = Mathf.SmoothDamp(myRigidBody.linearVelocityX, Input.GetAxisRaw("Horizontal") * moveSpeed, ref velocity, movementSmoothing);
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(Input.GetAxisRaw("Horizontal")), 1, 1);
+        }
+        else
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.localScale = new Vector3(Mathf.Sign(mousePos.x - transform.position.x), 1, 1);
+        }
     }
     void Jump()
     {
@@ -73,6 +85,17 @@ public class PlayerMovement : MonoBehaviour
             capsuleCollider.size = new Vector2(1, 2);
             playerSprite.transform.localScale = new Vector3(1, 1, 1) * scaleOriginal;
         }
+    }
+
+    void Animate()
+    {
+        bool jumping = !feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        bool walking = Input.GetAxisRaw("Horizontal") != 0 && !jumping;
+        bool idle = !walking && !jumping;
+
+        if (idle) { animator.SetBool("Idle", true); } else { animator.SetBool("Idle", false); }
+        if (walking) { animator.SetBool("Walking", true); } else { animator.SetBool("Walking", false); }
+        if (jumping) { animator.SetBool("Jumping", true); } else { animator.SetBool("Jumping", false); }
     }
 
     public void Recoil(Vector2 direction, float magnitude)
