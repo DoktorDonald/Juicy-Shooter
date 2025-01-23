@@ -1,9 +1,4 @@
-using NUnit.Framework;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,6 +45,7 @@ public class Gun : MonoBehaviour
 
     bool canShoot = true;
 
+    GunAudio gunAudio;
     PlayerMovement playerMovement;
     FollowCamera followCamera;
 
@@ -62,6 +58,7 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        gunAudio = GetComponent<GunAudio>();
         followCamera = FindFirstObjectByType<FollowCamera>();
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
     }
@@ -83,12 +80,12 @@ public class Gun : MonoBehaviour
 
         if (mousePos.x - transform.position.x > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1 * transform.parent.transform.localScale.x, 1, 1);
             aimAngle = Mathf.Atan((mousePos.y - transform.position.y) / (mousePos.x - transform.position.x)) * 180 / Mathf.PI;
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1 * transform.parent.transform.localScale.x, 1, 1);
             aimAngle = Mathf.Atan((mousePos.y - transform.position.y) / (mousePos.x - transform.position.x)) * 180 / Mathf.PI;
         }
 
@@ -136,6 +133,8 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && canShoot && shootingTimer > 1/firerate)
         {
+            shootingTimer = 0;
+
             GameObject bullet = Instantiate(bulletPrefab, gunPos + (mousePos - gunPos).normalized * bulletOriginOffset, Quaternion.identity);
 
             Vector3 velocity = ((Vector2)aimPoint - (gunPos + (mousePos - gunPos).normalized * bulletOriginOffset)).normalized * bulletSpeed;
@@ -143,13 +142,12 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().linearVelocity = velocity;
 
             muzzleFlash.Play();
+            gunAudio.playAudio();
 
             playerMovement.Recoil(-velocity.normalized, recoil);
             followCamera.StartCameraShake();
            
             bullet.GetComponent<Bullet>().StartTimer(bulletLifeTime);
-
-            shootingTimer = 0;
 
             EjectCasing();
         }

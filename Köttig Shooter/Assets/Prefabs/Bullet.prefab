@@ -282,4 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff424d14454a7d48ac2500d7eb658e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticles: {fileID: 2812587615888341040, guid: 3571be568afc8e844b1e95b29a747da6, type: 3}
   explosion: {fileID: 1129368881403932370, guid: bf6d3814eff946c4aab4f98eabf4d2e7, type: 3}
+  exposionType: 1

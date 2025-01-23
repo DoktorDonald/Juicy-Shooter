@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] GameObject hitParticles;
     [SerializeField] GameObject explosion;
-    [SerializeField] bool explosive;
+
+    [SerializeField] ExplosionType exposionType;
+
+    enum ExplosionType {explosive, random, inert}
 
     float time;
 
@@ -19,13 +23,22 @@ public class Bullet : MonoBehaviour
     {
         if (IsTouching("Ground"))
         {
-            if (explosive) { Explosion(); }
+            Instantiate(hitParticles, transform.position, Quaternion.identity);
+            if (exposionType == ExplosionType.explosive) { Explode(); }
+            if (exposionType == ExplosionType.random)
+            {
+                int rand = Random.Range(0, 2);
+
+                if (rand == 0)
+                {
+                    Explode();
+                }
+            }
             DestroySelf();
         }
 
         if (IsTouching("Casing"))
         {
-            if (explosive) { Invoke(nameof(Explosion), 0.05f); }
             Invoke(nameof(DestroySelf), 0.05f);
         }
     }
@@ -40,7 +53,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Explosion()
+    void Explode()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
     }
