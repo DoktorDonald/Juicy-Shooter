@@ -331,7 +331,7 @@ MonoBehaviour:
   hitPoints: 5
   maxHitPoints: 0
   damageDealt: 1
-  moveSpeed: 1
+  moveSpeed: 5
   canShoot: 0
 --- !u!212 &1208373454
 SpriteRenderer:
@@ -414,7 +414,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1208373456
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -449,8 +449,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.2, y: 0.19999999}
+  m_Offset: {x: -0.0035444524, y: -0.002082783}
+  m_Size: {x: 0.17518863, y: 0.17500637}
   m_Direction: 0
 --- !u!4 &1208373457
 Transform:
@@ -461,7 +461,7 @@ Transform:
   m_GameObject: {fileID: 1208373452}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.74072653, y: -1.1341141, z: 0.048952676}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.27, y: 10.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 1506981905}
   - component: {fileID: 1506981904}
   - component: {fileID: 1506981903}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
