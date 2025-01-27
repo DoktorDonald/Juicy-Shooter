@@ -52,11 +52,13 @@ public class Enemy : MonoBehaviour
             Debug.Log("yes");
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("aj");
         if (collision.transform.tag == "Bullet")
         {
-            hitPoints = hitPoints--;
+            Debug.Log("ajaj");
+            hitPoints--;
         }
     }
 
