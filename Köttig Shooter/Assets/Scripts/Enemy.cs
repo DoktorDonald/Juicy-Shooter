@@ -54,10 +54,14 @@ public class Enemy : MonoBehaviour
         {
             hitPoints = hitPoints--;
         }
+        if (hitPoints <= 0) 
+        { 
+            Die(); 
+        }
     }
 
     void Die()
     {
-
+        Destroy(gameObject);
     }
 }
