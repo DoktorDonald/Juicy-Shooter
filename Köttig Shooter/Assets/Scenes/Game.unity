@@ -2791,6 +2791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 445656712461334749, guid: 9677444bda73d7947a2e3763bfff5c19, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2197093526281421353, guid: 9677444bda73d7947a2e3763bfff5c19, type: 3}
       propertyPath: m_Camera
       value: 
