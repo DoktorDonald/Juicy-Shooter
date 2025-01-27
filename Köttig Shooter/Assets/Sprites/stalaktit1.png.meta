@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8187c5f23d92fa744a1c17db95128efc
+guid: 1c7b90fcb4e6ea44ba49f80be5f46352
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4029819251187114856
-    second: weapon_0
+      213: -6096232340989772471
+    second: stalaktit1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapon_0
+      name: stalaktit1_0
       rect:
         serializedVersion: 2
-        x: 72
-        y: 44
-        width: 1293
-        height: 299
+        x: 5
+        y: 3
+        width: 117
+        height: 275
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89c16ffedb43318c0800000000000000
-      internalID: -4029819251187114856
+      spriteID: 94d7e0f2cf4d56ba0800000000000000
+      internalID: -6096232340989772471
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      weapon_0: -4029819251187114856
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

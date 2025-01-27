@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8187c5f23d92fa744a1c17db95128efc
+guid: d135115188a40e84092fe5498851b710
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4029819251187114856
-    second: weapon_0
+      213: -1723037470882856777
+    second: sten2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapon_0
+      name: sten2_0
       rect:
         serializedVersion: 2
-        x: 72
-        y: 44
-        width: 1293
-        height: 299
+        x: 25
+        y: 21
+        width: 255
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89c16ffedb43318c0800000000000000
-      internalID: -4029819251187114856
+      spriteID: 7b0075d9c8a8618e0800000000000000
+      internalID: -1723037470882856777
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      weapon_0: -4029819251187114856
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
