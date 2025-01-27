@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      stalaktit3_0: 5673602177196686200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

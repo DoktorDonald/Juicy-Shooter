@@ -109,7 +109,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.017336667, y: -0.8178229}
+  m_Offset: {x: -0.017336667, y: -2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -907,17 +907,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7272982080555133848}
     m_Modifications:
+    - target: {fileID: 256804531033587857, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 256804531033587857, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 256804531033587857, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 256804531033587857, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290793653698604146, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4029819251187114856, guid: 8187c5f23d92fa744a1c17db95128efc, type: 3}
+    - target: {fileID: 2290793653698604146, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290793653698604146, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2290793653698604146, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2954591323530164657, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2954591323530164657, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2954591323530164657, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -952,6 +980,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5274500343359903867, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_Name
+      value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274500343359903867, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
@@ -961,11 +993,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: firerate
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: bulletSpeed
-      value: 40
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: overheatBar
@@ -976,8 +1008,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5486036866724127096, guid: 13f8cca822df0344893537c081d64d7e, type: 3}
     - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: ejectionSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: maxCasingCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: bulletOriginOffset
-      value: 1.2
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: ejectAngleRandomness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5870148131929503233, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: ejectionSpeedRandomness
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6486195668908537261, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: m_Name
@@ -991,12 +1039,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7541262905055081096, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541262905055081096, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8368279781322332857, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6894816800910016373, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54cf7f7cabf22f84487e1a598aac3cef, type: 3}
