@@ -42,6 +42,7 @@ public class Gun : MonoBehaviour
 
     float shootingTimer;
     float spreadTimer;
+    float spreadOffsetTimer;
 
     bool canShoot = true;
 
