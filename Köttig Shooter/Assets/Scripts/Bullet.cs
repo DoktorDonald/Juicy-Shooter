@@ -41,6 +41,11 @@ public class Bullet : MonoBehaviour
         {
             Invoke(nameof(DestroySelf), 0.05f);
         }
+
+        if (IsTouching("Enemy"))
+        {
+            DestroySelf();
+        }
     }
 
     bool IsTouching(string layerMask)

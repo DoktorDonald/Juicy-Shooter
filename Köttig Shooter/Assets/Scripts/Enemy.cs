@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Enemy : MonoBehaviour
 {
@@ -28,11 +30,12 @@ public class Enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        Die();
         myRigidbody.linearVelocityX = enemyMovement.x;
 
-        Debug.DrawLine(transform.position, transform.position + transform.TransformDirection(new Vector3(transform.position.x + 5f, transform.position.y - 5f, 0f)) * Mathf.Sqrt(50f));
+        Debug.DrawLine (new Vector2(transform.position.x + 4f, transform.position.y), new Vector2(transform.position.x + 4f, transform.position.y) + Vector2.down * 10);
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(new Vector3(transform.position.x + 5f, transform.position.y - 5f, 0f)), Mathf.Sqrt(50f), layerMask) == false)
+        if (Physics2D.Raycast(new Vector2(transform.position.x + 4, transform.position.y), Vector2.down, 10, layerMask) == false && facingRight)
         {
             if (facingRight)
             {
@@ -40,24 +43,30 @@ public class Enemy : MonoBehaviour
 
                 facingRight = false;
             }
-            else if (!facingRight)
+            else
             {
                 gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
                 facingRight = true;
             }
+            Debug.Log("yes");
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("aj");
         if (collision.transform.tag == "Bullet")
         {
-            hitPoints = hitPoints--;
+            Debug.Log("ajaj");
+            hitPoints--;
         }
     }
 
     void Die()
     {
-
+        if (hitPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
