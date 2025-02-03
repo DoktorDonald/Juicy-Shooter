@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
+    [SerializeField] float wallDistanceCheck;
+    [SerializeField] float stepdownSize;
 
     int direction = 1;
 
@@ -16,12 +18,14 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!Physics2D.Raycast(transform.position + new Vector3(direction, 0), Vector2.down, 10, LayerMask.GetMask("Ground")))
+
+
+        if (!Physics2D.Raycast(transform.position + new Vector3(direction, 0), Vector2.down, stepdownSize, LayerMask.GetMask("Ground")))
         {
             direction *= -1;
         }
 
-        if (Physics2D.Raycast(transform.position, new Vector3(direction, 0), 1, LayerMask.GetMask("Ground")))
+        if (Physics2D.Raycast(transform.position, new Vector3(direction, 0), wallDistanceCheck, LayerMask.GetMask("Ground")))
         {
             direction *= -1;
         }

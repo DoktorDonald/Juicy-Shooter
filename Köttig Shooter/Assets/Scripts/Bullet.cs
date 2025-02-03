@@ -9,9 +9,21 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] ExplosionType exposionType;
 
+    Rigidbody2D bulletRB;
+
     enum ExplosionType {explosive, random, inert}
 
     float time;
+
+    private void Start()
+    {
+        bulletRB = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(bulletRB.linearVelocityY, bulletRB.linearVelocityX) * Mathf.Rad2Deg);
+    }
 
     public void StartTimer(float time)
     {
