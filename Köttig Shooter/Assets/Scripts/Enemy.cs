@@ -8,10 +8,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxHitPoints = 10f;
     [SerializeField] float damageDealt = 1f;
     [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float detectionRange = 10f;
     [SerializeField] bool canShoot = false;
     [SerializeField] bool canMove = true;
 
     [SerializeField] GameObject[] bodyParts;
+
+    GameObject player;
 
     Vector2 enemyMovement;
     LayerMask layerMask;
@@ -24,6 +27,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        player = FindFirstObjectByType<PlayerMovement>().gameObject;
+
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
 
@@ -34,17 +39,25 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float playerDistance = (player.transform.position - transform.position).magnitude;
+
         Die();
 
-        if (canMove)
+        if (canMove) //&& playerDistance > detectionRange)
         {
-            myRigidbody.linearVelocityX = enemyMovement.x;
+            myRigidbody.linearVelocityX = enemyMovement.x * transform.localScale.x;
+        }
+        else if (canMove)
+        {
+            myRigidbody.linearVelocityX = Mathf.Sign(playerDistance) * moveSpeed;
         }
 
-        Debug.DrawLine (new Vector2(transform.position.x + 4f, transform.position.y), new Vector2(transform.position.x + 4f, transform.position.y) + Vector2.down * 10);
+        Debug.DrawLine (new Vector2(transform.position.x + 4f * transform.localScale.x, transform.position.y), new Vector2(transform.position.x + 4f * transform.localScale.x, transform.position.y) + Vector2.down * 10);
 
-        if (Physics2D.Raycast(new Vector2(transform.position.x + 4, transform.position.y), Vector2.down, 10, layerMask) == false && facingRight)
+        if (!Physics2D.Raycast(new Vector2(transform.position.x + 4 * transform.localScale.x, transform.position.y), Vector2.down, 10, layerMask))
         {
+            Debug.Log("YOSOSOS");
+
             if (facingRight)
             {
                 gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);

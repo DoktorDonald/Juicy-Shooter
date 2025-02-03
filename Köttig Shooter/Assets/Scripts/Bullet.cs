@@ -41,11 +41,6 @@ public class Bullet : MonoBehaviour
         {
             Invoke(nameof(DestroySelf), 0.05f);
         }
-
-        if (IsTouching("Enemy"))
-        {
-            DestroySelf();
-        }
     }
 
     bool IsTouching(string layerMask)
@@ -61,6 +56,21 @@ public class Bullet : MonoBehaviour
     void Explode()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
+    }
+
+    public void EnemyHit()
+    {
+        if (exposionType == ExplosionType.explosive) { Explode(); }
+        if (exposionType == ExplosionType.random)
+        {
+            int rand = Random.Range(0, 2);
+
+            if (rand == 0)
+            {
+                Explode();
+            }
+        }
+        DestroySelf();
     }
     
     IEnumerator Timer()
