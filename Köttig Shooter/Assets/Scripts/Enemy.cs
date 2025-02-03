@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float damageDealt = 1f;
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] bool canShoot = false;
+    [SerializeField] bool canMove = true;
+
+    [SerializeField] GameObject[] bodyParts;
 
     Vector2 enemyMovement;
     LayerMask layerMask;
@@ -28,10 +31,15 @@ public class Enemy : MonoBehaviour
         hitPoints = maxHitPoints;
         enemyMovement = new Vector2(moveSpeed, 0f);
     }
+
     private void FixedUpdate()
     {
         Die();
-        myRigidbody.linearVelocityX = enemyMovement.x;
+
+        if (canMove)
+        {
+            myRigidbody.linearVelocityX = enemyMovement.x;
+        }
 
         Debug.DrawLine (new Vector2(transform.position.x + 4f, transform.position.y), new Vector2(transform.position.x + 4f, transform.position.y) + Vector2.down * 10);
 
@@ -52,6 +60,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("yes");
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("aj");
@@ -66,6 +75,12 @@ public class Enemy : MonoBehaviour
     {
         if (hitPoints <= 0)
         {
+            for (int i = 0; i < 6; i++)
+            {
+                GameObject part = Instantiate(bodyParts[i], transform.position, Quaternion.identity);
+                part.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;
+            }
+
             Destroy(gameObject);
         }
     }
