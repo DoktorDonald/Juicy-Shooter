@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3226841731047048195}
   - component: {fileID: 2325216468328097011}
   - component: {fileID: 1795399922580882165}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ribcage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

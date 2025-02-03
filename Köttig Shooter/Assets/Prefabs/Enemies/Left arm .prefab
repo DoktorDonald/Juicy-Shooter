@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4624012691362023041}
   - component: {fileID: 4720406685895734202}
   - component: {fileID: 7087624183308477024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'Left arm '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

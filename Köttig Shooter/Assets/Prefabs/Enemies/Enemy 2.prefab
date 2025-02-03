@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 668620488086255083}
   - component: {fileID: 4521303593897807548}
   - component: {fileID: 3937035112973159709}
+  - component: {fileID: 5684448087858316182}
   m_Layer: 9
   m_Name: Enemy 2
   m_TagString: Untagged
@@ -203,7 +204,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e44bb7d422e6c46b2810e4af875860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 5
+  wallDistanceCheck: 1
+  stepdownSize: 5
+  playerFollowDistance: 10
+--- !u!114 &5684448087858316182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519730738616625580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88805f77acec9e741a446022172e2dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  bodyParts:
+  - {fileID: 308734953874446232, guid: 22f64fc54755c5f469f6f2796704f64f, type: 3}
+  - {fileID: 313850035710038420, guid: e28e7b4b9275bad4e9cf4971ea29850d, type: 3}
+  - {fileID: 3536362767863683234, guid: d7a31768418a34e47ad1908c75f7900d, type: 3}
+  - {fileID: 4816540844217103737, guid: 41a602b1cc4d5e0488ad8c5b011754b1, type: 3}
+  - {fileID: 3540480588131350256, guid: 59e4a9021df31c849a708ff241f0f727, type: 3}
+  - {fileID: 2632013316364625043, guid: cf4f278538ab64a4a87a275fb35f9add, type: 3}
 --- !u!1 &5857137263131199282
 GameObject:
   m_ObjectHideFlags: 0
