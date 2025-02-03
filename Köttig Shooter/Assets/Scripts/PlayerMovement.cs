@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D feetCollider;
     Rigidbody2D myRigidBody;
 
+    Canvas canvas;
+
     GameObject playerSprite;
     Animator animator;
 
@@ -29,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
         playerSprite = transform.GetChild(0).gameObject;
         animator = playerSprite.GetComponent<Animator>();
+
+        canvas = GetComponentInChildren<Canvas>();
 
         scaleOriginal = playerSprite.transform.localScale.x;
         capsuleOriginal = capsuleCollider.size;
@@ -60,11 +64,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             transform.localScale = new Vector3(Mathf.Sign(Input.GetAxisRaw("Horizontal")), 1, 1);
+            canvas.transform.localScale = new Vector3(Mathf.Sign(Input.GetAxisRaw("Horizontal")), 1, 1);
         }
         else
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.localScale = new Vector3(Mathf.Sign(mousePos.x - transform.position.x), 1, 1);
+            canvas.transform.localScale = new Vector3(Mathf.Sign(mousePos.x - transform.position.x), 1, 1);
         }
     }
     void Jump()
