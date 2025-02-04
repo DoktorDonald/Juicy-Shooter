@@ -5,14 +5,24 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int health;
     [SerializeField] GameObject[] bodyParts;
 
-    public void Damage(int damage)
+    Rigidbody2D enemyRB;
+
+    private void Start()
+    {
+        enemyRB = GetComponent<Rigidbody2D>();
+    }
+
+    public void Damage(int damage, Vector2 recoilDirection)
     {
         health -= damage;
 
         if (health <= 0)
         {
             Die();
+            return;
         }
+
+        enemyRB.linearVelocity += recoilDirection;
     }
     void Die()
     {

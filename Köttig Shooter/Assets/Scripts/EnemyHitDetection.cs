@@ -6,9 +6,9 @@ public class EnemyHitDetection : MonoBehaviour
     {
         if (other.transform.tag == "Bullet")
         {
-            other.GetComponent<Bullet>().EnemyHit();
+            transform.root.GetComponent<EnemyHealth>().Damage(1, other.GetComponent<Rigidbody2D>().linearVelocity.normalized * 10);
 
-            transform.root.GetComponent<EnemyHealth>().Damage(1);
+            other.GetComponent<Bullet>().EnemyHit();
         }
     }
 }
