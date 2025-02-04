@@ -6,12 +6,18 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float wallDistanceCheck;
     [SerializeField] float stepdownSize;
     [SerializeField] float playerFollowDistance;
+    [SerializeField] float attackDistance;
+    [SerializeField] float attackInterval;
+
+    float attackTimer;
 
     int direction = 1;
 
     Rigidbody2D enemyRB;
 
     GameObject player;
+
+    float velocity;
 
     private void Start()
     {
@@ -22,6 +28,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        attackTimer += Time.deltaTime;
+
         if (!Physics2D.Raycast(transform.position + new Vector3(direction, 0), Vector2.down, stepdownSize, LayerMask.GetMask("Ground")))
         {
             direction *= -1;
@@ -32,21 +40,30 @@ public class EnemyMovement : MonoBehaviour
             direction *= -1;
         }
 
-        Move();
+        Movement();
     }
 
-    private void Move()
+    private void Movement()
     {
         Vector2 playerDistance = (player.transform.position - transform.position);
 
         if (playerDistance.magnitude < playerFollowDistance)
         {
-            enemyRB.linearVelocityX = moveSpeed * Mathf.Sign(playerDistance.x);
+            Move(moveSpeed * Mathf.Sign(playerDistance.x));
         }
         else
         {
-            Debug.Log("WUT");
-            enemyRB.linearVelocityX = moveSpeed * direction;
+            Move(moveSpeed * direction);
         }
+
+        if (playerDistance.magnitude < attackDistance && attackTimer > attackInterval)
+        {
+
+        }
+    }
+
+    private void Move(float movement)
+    {
+        enemyRB.linearVelocityX = Mathf.SmoothDamp(enemyRB.linearVelocityX, movement, ref velocity, 0.1f);
     }
 }
