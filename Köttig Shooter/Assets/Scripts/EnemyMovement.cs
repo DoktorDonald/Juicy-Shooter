@@ -14,6 +14,8 @@ public class EnemyMovement : MonoBehaviour
     int direction = 1;
 
     Rigidbody2D enemyRB;
+    SpriteRenderer spriteRenderer;
+    GameObject visuals;
 
     GameObject player;
 
@@ -23,6 +25,8 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyRB = GetComponent<Rigidbody2D>();
         player = FindFirstObjectByType<PlayerMovement>().gameObject;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        visuals = spriteRenderer.gameObject;
     }
 
 
@@ -50,10 +54,12 @@ public class EnemyMovement : MonoBehaviour
         if (playerDistance.magnitude < playerFollowDistance)
         {
             Move(moveSpeed * Mathf.Sign(playerDistance.x));
+            visuals.transform.eulerAngles = new Vector3(0, 90 * (Mathf.Sign(playerDistance.x) - 1), 1);
         }
         else
         {
             Move(moveSpeed * direction);
+            visuals.transform.eulerAngles = new Vector3(0, 90 * (direction - 1), 1);
         }
 
         if (playerDistance.magnitude < attackDistance && attackTimer > attackInterval)
