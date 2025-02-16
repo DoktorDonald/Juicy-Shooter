@@ -11,6 +11,7 @@ public class FollowCamera : MonoBehaviour
     [SerializeField][Tooltip("How fast the camera accelerates")] float smoothing;
     [SerializeField][Tooltip("How much the camera zooms out depending on the speed of the target")] float sizeScaling;
     [SerializeField][Tooltip("How fast the camera changes zoom")] float sizeSmoothing;
+    [SerializeField] float lookahead;
 
     [Header("Camerashake")]
 
@@ -37,7 +38,7 @@ public class FollowCamera : MonoBehaviour
     {
         Vector3 targetPos = target.position + offset + shakeOffset;
 
-        targetPos += Vector3.right * 4 * Mathf.Sign(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - target.position.x);
+        targetPos += lookahead * (Camera.main.ScreenToWorldPoint(Input.mousePosition) - target.position).normalized;
 
         targetPos.z = transform.position.z;
 
