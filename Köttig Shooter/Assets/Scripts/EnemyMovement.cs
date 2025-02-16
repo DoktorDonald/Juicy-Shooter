@@ -64,7 +64,9 @@ public class EnemyMovement : MonoBehaviour
 
         if (playerDistance.magnitude < attackDistance && attackTimer > attackInterval)
         {
+            player.GetComponent<PlayerHealth>().Damage(1, transform.position);
 
+            attackTimer = 0;
         }
     }
 

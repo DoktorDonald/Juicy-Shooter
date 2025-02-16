@@ -130,7 +130,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -140,7 +140,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 2.7}
   m_EdgeRadius: 0
 --- !u!114 &2688782441246165810
 MonoBehaviour:
@@ -283,8 +283,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -0.25}
+  m_Size: {x: 1, y: 2.7}
   m_Direction: 0
 --- !u!114 &3937035112973159709
 MonoBehaviour:
@@ -300,10 +300,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   wallDistanceCheck: 1
-  stepdownSize: 5
-  playerFollowDistance: 10
-  attackDistance: 0
-  attackInterval: 0
+  stepdownSize: 10
+  playerFollowDistance: 15
+  attackDistance: 2
+  attackInterval: 1
 --- !u!114 &5684448087858316182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +324,8 @@ MonoBehaviour:
   - {fileID: 4816540844217103737, guid: 41a602b1cc4d5e0488ad8c5b011754b1, type: 3}
   - {fileID: 3540480588131350256, guid: 59e4a9021df31c849a708ff241f0f727, type: 3}
   - {fileID: 2632013316364625043, guid: cf4f278538ab64a4a87a275fb35f9add, type: 3}
+  deathSFX: {fileID: 5359586258684183378, guid: e6bb89985ea9970499df939c35beb608, type: 3}
+  hitSFX: {fileID: 5359586258684183378, guid: a2bac933792139f4591658bcb543a81b, type: 3}
 --- !u!1 &5152369604814988903
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,9 +353,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5152369604814988903}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 825566576327452203}

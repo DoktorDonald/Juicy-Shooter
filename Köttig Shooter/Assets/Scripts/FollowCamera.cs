@@ -37,6 +37,8 @@ public class FollowCamera : MonoBehaviour
     {
         Vector3 targetPos = target.position + offset + shakeOffset;
 
+        targetPos += Vector3.right * 4 * Mathf.Sign(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - target.position.x);
+
         targetPos.z = transform.position.z;
 
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothing * Time.deltaTime);

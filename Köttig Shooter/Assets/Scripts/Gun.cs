@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
@@ -50,7 +52,7 @@ public class Gun : MonoBehaviour
     PlayerMovement playerMovement;
     FollowCamera followCamera;
 
-    ParticleSystem muzzleFlash;
+    [SerializeField] GameObject muzzleFlash;
 
     private void Awake()
     {
@@ -61,7 +63,6 @@ public class Gun : MonoBehaviour
     {
         gunAudio = GetComponent<GunAudio>();
         followCamera = FindFirstObjectByType<FollowCamera>();
-        muzzleFlash = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
@@ -142,7 +143,8 @@ public class Gun : MonoBehaviour
 
             bullet.GetComponent<Rigidbody2D>().linearVelocity = velocity;
 
-            muzzleFlash.Play();
+            StartCoroutine(nameof(MuzzleFlash));
+
             gunAudio.playAudio();
 
             playerMovement.Recoil(-velocity.normalized, recoil);
@@ -193,6 +195,17 @@ public class Gun : MonoBehaviour
     void EnableShooting()
     {
         canShoot = true;
+    }
+
+    IEnumerator MuzzleFlash()
+    {
+        muzzleFlash.GetComponent<SpriteRenderer>().enabled = true;
+        muzzleFlash.GetComponentInChildren<Light2D>().enabled = true;
+
+        yield return new WaitForSeconds(0.05f);
+
+        muzzleFlash.GetComponent<SpriteRenderer>().enabled = false;
+        muzzleFlash.GetComponentInChildren<Light2D>().enabled = false;
     }
 
     private void OnDrawGizmos()

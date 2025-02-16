@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject hitParticles;
+    [SerializeField] GameObject enemyHitParticles;
     [SerializeField] GameObject explosion;
 
     [SerializeField] ExplosionType exposionType;
@@ -82,6 +83,9 @@ public class Bullet : MonoBehaviour
                 Explode();
             }
         }
+
+        Instantiate(enemyHitParticles, transform.position, Quaternion.identity);
+
         DestroySelf();
     }
     

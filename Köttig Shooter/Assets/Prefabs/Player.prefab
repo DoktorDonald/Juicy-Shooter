@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 445656712461334749}
   - component: {fileID: 8290794688918056669}
   - component: {fileID: 3361826005347213225}
+  - component: {fileID: 4317155921356473902}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -163,6 +164,19 @@ MonoBehaviour:
   moveSpeed: 10
   jumpHeight: 18
   movementSmoothing: 0.1
+--- !u!114 &4317155921356473902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64575014038827794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2b73d9c07efde4397ce5b7ed5ae10c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
 --- !u!1 &353560051913641344
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.5286921, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
