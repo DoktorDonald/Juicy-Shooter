@@ -301,8 +301,9 @@ MonoBehaviour:
   moveSpeed: 5
   wallDistanceCheck: 1
   stepdownSize: 10
+  stepUpSize: 3
   playerFollowDistance: 15
-  attackDistance: 2
+  attackDistance: 1
   attackInterval: 1
 --- !u!114 &5684448087858316182
 MonoBehaviour:

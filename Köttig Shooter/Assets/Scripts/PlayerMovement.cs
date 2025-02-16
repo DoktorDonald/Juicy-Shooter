@@ -1,5 +1,3 @@
-using Unity.Mathematics;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -43,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         Crouch();
         Animate();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

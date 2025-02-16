@@ -3,29 +3,20 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
-    [SerializeField] int startingWaveCount;
-    [SerializeField] float waveIncreaseFactor;
+    [SerializeField] float spawnTime;
 
-    [SerializeField] int nextWaveCount;
+    float spawnTimer;
 
-    private void Start()
+    private void Update()
     {
-        nextWaveCount = startingWaveCount;
+        spawnTimer += Time.deltaTime;
 
-        Spawnwave();
-    }
 
-    public void Spawnwave()
-    {
-       for (int i = 0; i < nextWaveCount; i++)
+        if (spawnTimer >= spawnTime)
         {
-            Vector3 SpawnPos = new Vector3(Random.Range(-2, 2), 0, 0);
+            Instantiate(enemy, transform.position, Quaternion.identity);
 
-            Instantiate(enemy, transform.position + SpawnPos, Quaternion.identity);
+            spawnTimer = 0;
         }
-
-       FindFirstObjectByType<EnemyCounter>().AddEnemies(nextWaveCount);
-
-        nextWaveCount = Mathf.RoundToInt(nextWaveCount * waveIncreaseFactor);
     }
 }

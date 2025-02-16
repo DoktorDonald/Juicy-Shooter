@@ -19,7 +19,7 @@ public class EnemyCounter : MonoBehaviour
 
             foreach (EnemySpawner spawner in spawners)
             {
-                spawner.Spawnwave();
+                //spawner.Spawnwave();
             }
         }
     }

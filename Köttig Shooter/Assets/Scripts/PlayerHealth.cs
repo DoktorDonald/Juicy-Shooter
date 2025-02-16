@@ -20,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
 
+        GetComponentInChildren<Animator>().SetTrigger("Damage");
+
         Vector2 recoil = ((Vector2)transform.position - pos).normalized;
 
         enemyRB.linearVelocity += recoil * 20 + Vector2.up * 10;

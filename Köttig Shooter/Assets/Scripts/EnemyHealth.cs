@@ -41,8 +41,6 @@ public class EnemyHealth : MonoBehaviour
             part.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 10;
         }
 
-        FindFirstObjectByType<EnemyCounter>().RemoveEnemy();
-
         Instantiate(deathSFX);
 
         StartCoroutine(nameof(LagFrame));

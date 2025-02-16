@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -58,7 +57,7 @@ public class Bullet : MonoBehaviour
 
     bool IsTouching(string layerMask)
     {
-        return gameObject.GetComponent<CircleCollider2D>().IsTouchingLayers(LayerMask.GetMask(layerMask));
+        return gameObject.GetComponent<CapsuleCollider2D>().IsTouchingLayers(LayerMask.GetMask(layerMask));
     }
 
     void DestroySelf()

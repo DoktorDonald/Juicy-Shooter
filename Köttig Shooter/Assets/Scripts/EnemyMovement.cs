@@ -5,6 +5,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float wallDistanceCheck;
     [SerializeField] float stepdownSize;
+    [SerializeField] float stepUpSize;
     [SerializeField] float playerFollowDistance;
     [SerializeField] float attackDistance;
     [SerializeField] float attackInterval;
@@ -51,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector2 playerDistance = (player.transform.position - transform.position);
 
-        if (playerDistance.magnitude < playerFollowDistance)
+        if (playerDistance.magnitude < playerFollowDistance && !Physics2D.Raycast(transform.position, playerDistance, playerDistance.magnitude, LayerMask.GetMask("Ground")))
         {
             Move(moveSpeed * Mathf.Sign(playerDistance.x));
             visuals.transform.eulerAngles = new Vector3(0, 90 * (Mathf.Sign(playerDistance.x) - 1), 1);
@@ -65,6 +66,8 @@ public class EnemyMovement : MonoBehaviour
         if (playerDistance.magnitude < attackDistance && attackTimer > attackInterval)
         {
             player.GetComponent<PlayerHealth>().Damage(1, transform.position);
+
+            GetComponentInChildren<Animator>().SetTrigger("Attack");
 
             attackTimer = 0;
         }
